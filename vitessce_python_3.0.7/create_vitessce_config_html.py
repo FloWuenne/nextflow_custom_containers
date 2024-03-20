@@ -9,10 +9,11 @@ from vitessce import (
     OmeTiffWrapper,
     Component as cm
 )
+
 vc = VitessceConfig(schema_version="1.0.15", name='Nextflow vitessce test', description='Test')
 dataset = vc.add_dataset(name='Spraggins').add_object(
     OmeTiffWrapper(
-      img_url = "https://assets.hubmapconsortium.org/a4be39d9c1606130450a011d2f1feeff/ometiff-pyramids/processedMicroscopy/VAN0012-RK-102-167-PAS_IMS_images/VAN0012-RK-102-167-PAS_IMS-registered.ome.tif"
+        img_url = "s3://nf-core-awsmegatests.s3-eu-west-1.amazonaws.com/molkart/results-7605a53092930a0b65509c64f79834a6c8449e9b/clahe/32830-Slide1_A2-2_32830-Slide1_A2-2_DAPI_gridfilled_clahe.tiff"
     )
 )
 spatial = vc.add_view(cm.SPATIAL, dataset=dataset)
@@ -22,8 +23,7 @@ vc.layout(spatial | lc)
 ###################
 #### MCMICRO config
 
-config_dict = vc.export(to='files', base_url='http://localhost')
-config_json = json.dumps(config_dict)
+config_json = json.dumps(vc.to_dict(), indent=2)
 
 # Replace the CONFIG_JSON placeholder in the html template with our actual vitessce json view config
 html_content = html_template.replace("%CONFIG_JSON%", config_json)
