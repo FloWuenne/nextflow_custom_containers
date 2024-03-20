@@ -1,4 +1,5 @@
-
+# HTML template with a placeholder for the Vitessce configuration
+html_template = """
 <!DOCTYPE html>
 <html>
   <head>
@@ -24,7 +25,7 @@
       import { createRoot } from 'react-dom/client';
       import { Vitessce } from 'vitessce';
 
-      const config = {"version": "1.0.15", "name": "Nextflow vitessce test", "description": "Test", "datasets": [{"uid": "A", "name": "Spraggins", "files": [{"fileType": "raster.json", "options": {"schemaVersion": "0.0.2", "images": [{"name": "", "type": "ome-tiff", "url": "https://assets.hubmapconsortium.org/a4be39d9c1606130450a011d2f1feeff/ometiff-pyramids/processedMicroscopy/VAN0012-RK-102-167-PAS_IMS_images/VAN0012-RK-102-167-PAS_IMS-registered.ome.tif", "metadata": {"isBitmask": false}}]}}]}], "coordinationSpace": {"dataset": {"A": "A"}}, "layout": [{"component": "spatial", "coordinationScopes": {"dataset": "A"}, "x": 0.0, "y": 0, "w": 6.0, "h": 12}, {"component": "layerController", "coordinationScopes": {"dataset": "A"}, "x": 6.0, "y": 0, "w": 6.0, "h": 12}], "initStrategy": "auto"};
+      const config = %CONFIG_JSON%;
 
       function MyApp() {
         return React.createElement(
@@ -43,3 +44,4 @@
     </script>
   </body>
 </html>
+"""

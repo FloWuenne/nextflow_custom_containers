@@ -24,8 +24,12 @@ status = vc.add_view(cm.STATUS, dataset=dataset)
 lc = vc.add_view(cm.LAYER_CONTROLLER, dataset=dataset).set_props(disableChannelsIfRgbDetected=True)
 vc.layout(spatial | (lc / status))
 
-vc.export(to="files", base_url=f"http://localhost:{8080}", out_dir="/workspace")
+config_dict = vc.export(to='files', base_url='http://localhost')
+config_json = json.dumps(config_dict)
 
-with open("/workspace/vitessce_test.html", "w") as f:
-    config_dict = vc.to_dict(base_url=f"http://localhost:8000")
-    json.dump(config_dict, f)
+# vc.export(to="files", base_url=f"http://localhost:{8080}", out_dir="/workspace")
+
+# with open("/workspace/vitessce_test.html", "w") as f:
+#     config_dict = vc.to_dict(base_url=f"http://localhost:8000")
+#     json.dump(config_dict, f)
+    
